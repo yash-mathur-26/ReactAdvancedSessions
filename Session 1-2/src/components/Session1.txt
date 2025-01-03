@@ -1,0 +1,84 @@
+import { useState } from 'react'
+import './App.css'
+
+function App() {
+  const [tasks,setTasks] = useState([]);
+  const [newTasks,setNewTasks]=useState("");
+
+
+  const addTask = ()=>{
+    if(newTasks.trim()){
+      const task = {id:Date.now(),text:newTasks,completed:false};
+      setTasks([...tasks,task]);
+      setNewTasks("");
+    }
+  }
+
+  const taskCompleted=(id)=>{
+    const updatedTasks = tasks.map((task)=>
+      task.id === id ? {...task,completed:!task.completed}:task
+  )
+    setTasks(updatedTasks);
+  }
+
+  const deleteTask=(id)=>{
+    const filteredTask = tasks.filter((task)=>task.id !==id);
+    setTasks(filteredTask);
+  }
+  return (
+    <div style={{ maxWidth: "400px", margin: "50px auto", textAlign: "center" }}>
+      <h1>Todo List</h1>
+      <div style={{ marginBottom: "20px" }}>
+        <input
+          type="text"
+          value={newTasks}
+          onChange={(e) => setNewTasks(e.target.value)}
+          placeholder="Add a new task"
+          style={{ padding: "10px", width: "70%" }}
+        />
+        <button onClick={addTask} style={{ padding: "10px 15px", marginLeft: "5px" }}>
+          Add
+        </button>
+      </div>
+      <ul style={{ listStyle: "none", padding: 0 }}>
+        {tasks.map((task) => (
+          <li
+            key={task.id}
+            style={{
+              marginBottom: "10px",
+              textDecoration: task.completed ? "line-through" : "none",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "10px",
+              border: "1px solid #ddd",
+              borderRadius: "5px",
+            }}
+          >
+            <span
+              onClick={() => taskCompleted(task.id)}
+              style={{ cursor: "pointer", flexGrow: 1, textAlign: "left" }}
+            >
+              {task.text}
+            </span>
+            <button
+              onClick={() => deleteTask(task.id)}
+              style={{
+                padding: "5px 10px",
+                backgroundColor: "red",
+                color: "white",
+                border: "none",
+                borderRadius: "3px",
+                cursor: "pointer",
+              }}
+            >
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+export default App
