@@ -8,7 +8,6 @@ app.use(express.json());
 
 const users = [
     {id:1,name:"Yash Mathur",email:"yash@mail.com",technology:"react js"},
-    {id:2,name:"Devanshi Shah",email:"devanshi@mail.com",technology:"AWS"},
 ]
 
 app.get('/api/users',(req,res)=>{
