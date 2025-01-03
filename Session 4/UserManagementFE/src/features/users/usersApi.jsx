@@ -17,4 +17,4 @@ export const usersApi = createApi({
     })
 })
 
-export const { useFetchUsersQuery, useAddUserMutation } = usersApi;
+export const { fetchUsers, addNewUser } = usersApi;

@@ -1,7 +1,7 @@
-import { useFetchUsersQuery } from "../features/users/usersApi";
+import { fetchUsers } from "../features/users/usersApi";
 
 const UserList = ()=>{
-    const { data:users,error,isLoading } = useFetchUsersQuery();
+    const { data:users,error,isLoading } = fetchUsers();
     if(isLoading) return <p>Loading...</p>;
     if(error) return <p>Error Loading users.</p>
 

@@ -1,8 +1,8 @@
 import {useState} from 'react';
-import { useAddUserMutation } from '../features/users/usersApi';
+import { addNewUser } from '../features/users/usersApi';
 
 const AddUserForm=()=>{
-    const [addUser] = useAddUserMutation();
+    const [addUser] = addNewUser();
     const [formData,setFormData] = useState({
         name:"",
         email:"",
